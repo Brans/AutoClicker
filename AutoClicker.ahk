@@ -13,13 +13,13 @@ $!j:: ; Toggle key - Alt+J
 t := !t ; Toggle script on/off
 loop_start: ; Begin the loop
 
-IniRead, MinSec, conf.ini, RandomSeconds, Min
-IniRead, MaxSec, conf.ini, RandomSeconds, Max
+IniRead, MinSec, conf.ini, RandomSeconds, Min ; Read the minimum value from the config file
+IniRead, MaxSec, conf.ini, RandomSeconds, Max ; Read the maximum value from the config file
 
-Random,RandSec, 367, 1025 
+Random,RandSec, 367, 1025 ; Random between 367 and 1025 ms for additional randomized times
 
-MinSec:= MinSec*1000+RandSec
-MaxSec:= MaxSec*1000+RandSec
+MinSec:= MinSec*1000+RandSec ; convert the read values to seconds and add an additional random interval over the top
+MaxSec:= MaxSec*1000+RandSec ; convert the read values to seconds and add an additional random interval over the top
 
 While t{ ; While toggled, allows the script to be toggled on and off as well
 Random,RC, MinSec, MaxSec ; Random interval resets each time the loop begins
